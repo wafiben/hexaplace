@@ -1,9 +1,9 @@
 import { AggregateRoot } from '@libs/ddd/domain/base-classes/aggregate-root.base';
 import { Guard } from '@libs/ddd/domain/guard';
 import { DateVO } from '@libs/ddd/domain/value-objects/date.value-object';
-import { ProductDescriptionRequiredError } from '@modules/catalog/errors/product/product-description-required.error';
-import { ProductNameRequiredError } from '@modules/catalog/errors/product/product-name-required.error';
 import { CategoryCreatedDomainEvent } from '@modules/category/domain/events/category-created.domain-event';
+import { CategoryNameRequiredError } from '@modules/category/errors/category-name-required.error';
+import { CategoryDescriptionRequiredError } from '@modules/category/errors/category-description-required.error';
 import { CategorytId } from '../value-objects/category-id.value-object';
 
 export interface CreateCategoryProps {
@@ -78,8 +78,8 @@ export class CategoryEntity extends AggregateRoot<CategoryProps> {
   } */
 
   validate(): void {
-    if (Guard.isEmpty(this.props.name)) throw new ProductNameRequiredError();
+    if (Guard.isEmpty(this.props.name)) throw new CategoryNameRequiredError();
     if (Guard.isEmpty(this.props.description))
-      throw new ProductDescriptionRequiredError();
+      throw new CategoryDescriptionRequiredError();
   }
 }

@@ -21,14 +21,14 @@ import { CategoryOrmEntity } from './category.orm-entity';
 @Injectable()
 @final
 export class CategoryOrmRepository
-  /* extends TypeormRepositoryBase<CategoryEntity, CategoryProps, ProductOrmEntity>
-  implements CategoryReadRepositoryPort */
+  extends TypeormRepositoryBase<CategoryEntity, CategoryProps, CategoryOrmEntity>
+  implements CategoryReadRepositoryPort
 {
   protected relations: string[] = [];
-/* 
+
   constructor(
     @InjectRepository(CategoryOrmEntity)
-    categoryRepository: Repository<CategoryOrmEntity>,
+    private readonly categoryRepository: Repository<CategoryOrmEntity>,
     @Inject('LoggerPort')
     protected readonly logger: LoggerPort,
   ) {
@@ -43,7 +43,50 @@ export class CategoryOrmRepository
   }
   protected prepareQuery(
     params: DeepPartial<BaseEntityProps & CategoryProps>,
-  ): WhereCondition<ProductOrmEntity> {
+  ): WhereCondition<CategoryOrmEntity> {
     throw new Error('Method not implemented.');
-  } */
+  }
 }
+
+/* @Injectable()
+@final
+export class ProductOrmRepository
+  extends TypeormRepositoryBase<ProductEntity, ProductProps, ProductOrmEntity>
+  implements ProductReadRepositoryPort
+{
+  protected relations: string[] = [];
+
+  constructor(
+    @InjectRepository(ProductOrmEntity)
+    private readonly productRepository: Repository<ProductOrmEntity>,
+    @Inject('LoggerPort')
+    protected readonly logger: LoggerPort,
+  ) {
+    super(
+      productRepository,
+      new ProductOrmMapper(ProductEntity, ProductOrmEntity),
+      logger,
+    );
+  }
+
+  async findOneByIdOrThrow(id: ProductId): Promise<ProductEntity> {
+    return super.findOneByIdOrThrow(id);
+  }
+
+  async findProducts(query: GetProductsQuery): Promise<ProductEntity[]> {
+    const where: QueryParams<ProductOrmEntity> = removeUndefinedProps(query);
+    const products = await this.repository.find({ where });
+    return products.map((product) => this.mapper.toDomainEntity(product));
+  }
+
+  // Used to construct a query
+  protected prepareQuery(
+    params: QueryParams<ProductProps>,
+  ): WhereCondition<ProductOrmEntity> {
+    const where: QueryParams<ProductOrmEntity> = {};
+    if (params.name) {
+      where.name = params.name;
+    }
+    return where;
+  }
+} */

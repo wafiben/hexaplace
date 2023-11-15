@@ -45,19 +45,21 @@ export abstract class TypeormRepositoryBase<
     params: QueryParams<EntityProps>,
   ): WhereCondition<OrmEntity>;
 
-  async save(entity: Entity): Promise<Entity> {
-    entity.validate(); // Protecting invariant before saving
-    const ormEntity: OrmEntity = this.mapper.toOrmEntity(entity);
+  async save(entity: Entity): Promise<any> {
+    console.log('there===>',entity)
+  
+    /* entity.validate(); */  // Protecting invariant before saving
+ /*    const ormEntity: OrmEntity = this.mapper.toOrmEntity(entity);
     const result = await this.repository.save(ormEntity);
     await DomainEvents.publishEvents(
       entity.id,
       this.logger,
       this.correlationId,
-    );
+    ); 
     this.logger.debug(
       `[${entity.constructor.name}] persisted ${entity.id.value}`,
     );
-    return this.mapper.toDomainEntity(result);
+    return this.mapper.toDomainEntity(result); */
   }
 
   async saveMultiple(entities: Entity[]): Promise<Entity[]> {

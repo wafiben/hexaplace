@@ -27,3 +27,4 @@ export class ProductUnitOfWork
     ).setCorrelationId(correlationId);
   }
 }
+
