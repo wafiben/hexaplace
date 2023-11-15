@@ -19,7 +19,7 @@ export class ProductInMemoryRepository
   implements ProductWriteRepositoryPort, ProductReadRepositoryPort
 {
   constructor() {
-    super(
+    super( 
       new ProductOrmMapper(ProductEntity, ProductOrmEntity),
       new Logger('ProductRepository'),
     );
