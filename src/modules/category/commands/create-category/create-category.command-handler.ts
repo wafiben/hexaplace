@@ -25,7 +25,6 @@ export class CreateCategoryCommandHandler extends CommandHandlerBase {
     correlationId: string,
     category: CategoryEntity,
   ): Promise<void> {
-    console.log({ category });
     await this.unitOfWork
       .getWriteCategoryRepository(correlationId)
       .save(category);
