@@ -4,8 +4,8 @@ import { final } from '@libs/decorators/final.decorator';
 import { Inject, Injectable } from '@nestjs/common';
 import { CategoryWriteRepositoryPort } from '../ports/category.repository.port';
 import { CategoryUnitOfWorkPort } from '../ports/category.unit-of-work.port';
-import { CategoryOrmRepository } from './category.orm-repository';
 import { CategoryOrmEntity } from './category.orm-entity';
+import { CategoryOrmRepository } from './category.orm-repository';
 
 @Injectable()
 @final
@@ -28,10 +28,3 @@ export class CategoryUnitOfWork
     ).setCorrelationId(correlationId);
   }
 }
-
-/* getWriteProductRepository(correlationId: string): ProductWriteRepositoryPort {
-  return new ProductOrmRepository(
-    this.getOrmRepository(ProductOrmEntity, correlationId),
-    this.logger,
-  ).setCorrelationId(correlationId);
-} */

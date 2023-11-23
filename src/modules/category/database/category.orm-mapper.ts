@@ -17,7 +17,9 @@ export class CategoryOrmMapper extends OrmMapper<
   protected toOrmProps(
     entity: CategoryEntity,
   ): OrmEntityProps<CategoryOrmEntity> {
+    
     const props = entity.getPropsCopy();
+
     return {
       name: props.name,
       description: props.description,

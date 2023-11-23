@@ -3,7 +3,7 @@ import { routesV1 } from '@modules/catalog/catalog.routes';
 import { ProductEntity } from '@modules/catalog/domain/entities/product.entity';
 import { GetProductsQuery } from '@modules/catalog/queries/get-products/get-products.query';
 import { GetProductsHttpRequest } from '@modules/catalog/queries/get-products/get-products.request.dto';
-import { ProductHttpResponse } from '@modules/catalog/queries/get-products/get-products.response.dto';
+import { CategoryResponse } from '@modules/category/queries/get-categories/get-categories.response.dto';
 import { Controller, Get, HttpStatus, Query } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import {
@@ -17,22 +17,25 @@ import {
 @ApiBearerAuth('jwt-token')
 @Controller(routesV1.version)
 export class GetCategoriesHttpController {
- /*  constructor(private readonly queryBus: QueryBus) {}
+  constructor(private readonly queryBus: QueryBus) {}
 
   @Get(routesV1.product.root)
-  @ApiOperation({ summary: 'List products' })
+  @ApiOperation({ summary: 'List categories' })
   @ApiResponse({
     status: HttpStatus.OK,
-    type: ProductHttpResponse,
+    type: CategoryResponse,
   })
   async getProducts(
     @Query() request: GetProductsHttpRequest,
-  ): Promise<ProductHttpResponse[]> {
+  ): Promise</* CategoryResponse[] */  any> {
     const query = new GetProductsQuery(request);
     const result: Result<ProductEntity[]> = await this.queryBus.execute(query);
 
-     Returning Response classes which are responsible
-       for whitelisting data that is sent to the product 
-     return result.unwrap().map((product) => new ProductHttpResponse(product)); 
-  } */
+    /* Returning Response classes which are responsible
+       for whitelisting data that is sent to the product */
+    /* return result.unwrap().map((product) => new CategoryResponse(product)); */
+  }
 }
+
+
+

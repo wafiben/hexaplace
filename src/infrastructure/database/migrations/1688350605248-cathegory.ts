@@ -3,7 +3,8 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 
 export class CategoryTable1634280000000 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    const { schema } = queryRunner.connection.options as PostgresConnectionOptions;
+    const { schema } = queryRunner.connection
+      .options as PostgresConnectionOptions;
     await queryRunner.query(`
       -- Table: category
       
@@ -12,16 +13,34 @@ export class CategoryTable1634280000000 implements MigrationInterface {
           id character varying(255),
           name character varying(255) NOT NULL,
           description text NOT NULL,
-          parentId character varying(255)
+          "createdDate" character varying(30),
+          "updatedDate" character varying(30),
+          parentId character varying(255),
+          metadata jsonb,
+          CONSTRAINT category_pkey PRIMARY KEY (id)
       );
     `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const { schema } = queryRunner.connection.options as PostgresConnectionOptions;
+    const { schema } = queryRunner.connection
+      .options as PostgresConnectionOptions;
     await queryRunner.query(`
       -- Table: category
       DROP TABLE IF EXISTS "${schema}".category;
     `);
   }
 }
+
+
+/* public async down(queryRunner: QueryRunner): Promise<void> {
+  const { schema } = queryRunner.connection
+    .options as PostgresConnectionOptions;
+  await queryRunner.query(
+    `
+-- Table: product
+DROP TABLE IF EXISTS "${schema}".product;
+    `,
+  );
+}
+ */

@@ -5,6 +5,7 @@ import { ProductApprovedDomainEventHandler } from './event-handlers/product-appr
 import { ProductRejectedDomainEventHandler } from './event-handlers/product-rejected.domain-event-handler';
 import { EmailNotificationSender } from './adapters/notification.email.adapter';
 
+
 export const productUnitOfWorkSingletonProvider: ClassProvider = {
   provide: 'ProductUnitOfWorkPort',
   useClass: ProductUnitOfWork,

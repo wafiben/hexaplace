@@ -4,12 +4,12 @@ import { final } from '@libs/decorators/final.decorator';
 import { ProductOrmEntity } from '@modules/catalog/database/product.orm-entity';
 import { ProductOrmMapper } from '@modules/catalog/database/product.orm-mapper';
 import {
-ProductEntity,
-ProductProps
+  ProductEntity,
+  ProductProps,
 } from '@modules/catalog/domain/entities/product.entity';
 import {
-ProductReadRepositoryPort,
-ProductWriteRepositoryPort
+  ProductReadRepositoryPort,
+  ProductWriteRepositoryPort,
 } from '@modules/catalog/ports/product.repository.port';
 import { GetProductsQuery } from '@modules/catalog/queries/get-products/get-products.query';
 
@@ -19,7 +19,7 @@ export class ProductInMemoryRepository
   implements ProductWriteRepositoryPort, ProductReadRepositoryPort
 {
   constructor() {
-    super( 
+    super(
       new ProductOrmMapper(ProductEntity, ProductOrmEntity),
       new Logger('ProductRepository'),
     );
@@ -30,7 +30,6 @@ export class ProductInMemoryRepository
       (productOrmEntity: ProductOrmEntity) =>
         !query.name || productOrmEntity.name.startsWith(query.name),
     );
-
     return Promise.resolve(this.toDomainEntities(filteredProducts));
   }
 }

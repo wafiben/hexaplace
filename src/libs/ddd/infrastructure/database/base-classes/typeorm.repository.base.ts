@@ -46,11 +46,15 @@ export abstract class TypeormRepositoryBase<
   ): WhereCondition<OrmEntity>;
 
   async save(entity: Entity): Promise<any> {
-    console.log('there===>',entity)
-  
-    /* entity.validate(); */  // Protecting invariant before saving
- /*    const ormEntity: OrmEntity = this.mapper.toOrmEntity(entity);
+    console.log('there===>==>===landlmkndmln');
+    console.log('there===>==>', entity, '<<====entity====>');
+    const ormEntity: OrmEntity = this.mapper.toOrmEntity(entity);
+    console.log('===>ormEntity', ormEntity);
     const result = await this.repository.save(ormEntity);
+    console.log("result",result)
+    /* entity.validate(); */ // Protecting invariant before saving
+    /* const ormEntity: OrmEntity = this.mapper.toOrmEntity(entity); */
+    /* 
     await DomainEvents.publishEvents(
       entity.id,
       this.logger,

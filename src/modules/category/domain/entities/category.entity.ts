@@ -2,8 +2,8 @@ import { AggregateRoot } from '@libs/ddd/domain/base-classes/aggregate-root.base
 import { Guard } from '@libs/ddd/domain/guard';
 import { DateVO } from '@libs/ddd/domain/value-objects/date.value-object';
 import { CategoryCreatedDomainEvent } from '@modules/category/domain/events/category-created.domain-event';
-import { CategoryNameRequiredError } from '@modules/category/errors/category-name-required.error';
 import { CategoryDescriptionRequiredError } from '@modules/category/errors/category-description-required.error';
+import { CategoryNameRequiredError } from '@modules/category/errors/category-name-required.error';
 import { CategorytId } from '../value-objects/category-id.value-object';
 
 export interface CreateCategoryProps {
@@ -11,14 +11,14 @@ export interface CreateCategoryProps {
   createdDate?: DateVO;
   name: string;
   description: string;
-  parentId?: string;
+  /* parentId?: string; */
 }
 
 export interface CategoryProps {
   createdDate?: DateVO;
   name: string;
   description: string;
-  parentId?: string;
+  /* parentId?: string; */
 }
 
 export class CategoryEntity extends AggregateRoot<CategoryProps> {
@@ -31,7 +31,7 @@ export class CategoryEntity extends AggregateRoot<CategoryProps> {
     const props: CreateCategoryProps = {
       name: create.name,
       description: create.description,
-      parentId: create.parentId,
+      /* parentId: create.parentId, */
     };
     const categoryEntity = new CategoryEntity({
       id,
@@ -46,7 +46,7 @@ export class CategoryEntity extends AggregateRoot<CategoryProps> {
       }),
     );
 
-    return CategoryEntity;
+    return categoryEntity;
   }
 
   /*   approve(): void {
