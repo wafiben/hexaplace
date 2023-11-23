@@ -1,7 +1,7 @@
 import { routesV1 } from '@modules/category/category.routes';
+import { DeleteCategoryCommand } from '@modules/category/commands/delete-cateory/delete-category.command';
 import { Controller, Delete, HttpStatus, Param } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { DeleteCategoryCommand } from '@modules/category/commands/delete-cateory/delete-category.command';
 
 import {
   ApiBearerAuth,
@@ -17,6 +17,11 @@ export class DeleteCategoryHttpController {
   constructor(private readonly commandBus: CommandBus) {}
   @Delete(routesV1.category.deleteById)
   @ApiOperation({ summary: 'delete a category' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: `product is deleted`,
+  })
+  
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: `when product is not found`,
