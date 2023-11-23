@@ -1,6 +1,7 @@
 import { CommandHandlerBase } from '@libs/ddd/domain/base-classes/command-handler.base';
 import { Guard } from '@libs/ddd/domain/guard';
 import { DeleteCategoryCommand } from '@modules/category/commands/delete-cateory/delete-category.command';
+import { CategoryEntity } from '@modules/category/domain/entities/category.entity';
 import { CategorytId } from '@modules/category/domain/value-objects/category-id.value-object';
 import { CategoryIdInvalidError } from '@modules/category/errors/category-id-invalid.error';
 import { CategoryReadRepositoryPort } from '@modules/category/ports/category.repository.port';
@@ -21,23 +22,21 @@ export class DeleteProductCommandHandler extends CommandHandlerBase {
   async handle(command: DeleteCategoryCommand): Promise<void> {
     this.isValidOrThrow(command);
     const category = await this.getProductById(command);
-    console.log('===>', category);
-    /*    product.deleteArchive();
-    await this.delete(command.correlationId, product); */
+    await this.delete(command.correlationId, category);
   }
 
-  /*   private async delete(
+  private async delete(
     correlationId: string,
-    product: ProductEntity,
+    category: CategoryEntity,
   ): Promise<void> {
     await this.unitOfWork
-      .getWriteProductRepository(correlationId)
-      .deleteArchive(product);
-  } */
+      .getWriteCategoryRepository(correlationId)
+      .delete(category);
+  }
 
   private async getProductById(
     command: DeleteCategoryCommand,
-  ): Promise</* ProductEntity */ any> {
+  ): Promise<CategoryEntity> {
     const category = await this.categoryReadRepository.findOneByIdOrThrow(
       new CategorytId(command.id),
     );

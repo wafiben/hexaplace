@@ -5,6 +5,7 @@ import {
 } from '@modules/category/category.providers';
 import { CreateCategoryCommandHandler } from '@modules/category/commands/create-category/create-category.command-handler';
 import { CreateCategoryHttpController } from '@modules/category/commands/create-category/create-category.http.controller';
+import { DeleteProductCommandHandler } from '@modules/category/commands/delete-cateory/delete-category.command-handler';
 import { DeleteCategoryHttpController } from '@modules/category/commands/delete-cateory/delete-category.http.controller';
 import { ModifyCategoryCommandHandler } from '@modules/category/commands/put-category/modify-category.handler';
 import { ModifyCategoryHttpController } from '@modules/category/commands/put-category/modify-category.http.controller';
@@ -44,6 +45,7 @@ const adapters = [
 const commandHandlers = [
   CreateCategoryCommandHandler,
   ModifyCategoryCommandHandler,
+  DeleteProductCommandHandler,
 ];
 const unitsOfWork = [categoryUnitOfWorkSingletonProvider];
 
