@@ -13,7 +13,7 @@ import { CategoryReadRepositoryPort } from '@modules/category/ports/category.rep
 export class GetCategoryQueryHandler extends QueryHandlerBase {
   constructor(
     @Inject('CategoryReadRepositoryPort')
-    private readonly categoryRepo: ProductReadRepositoryPort,
+    private readonly categoryRepo: CategoryReadRepositoryPort,
   ) {
     super();
   }
@@ -23,9 +23,9 @@ export class GetCategoryQueryHandler extends QueryHandlerBase {
      and retrieves products directly from a repository.
    */
      async handle(query: GetCategorytQuery): Promise<Result<any /* ProductReadRepositoryPort */>> {
-        const product = await this.categoryRepo.findOneByIdOrThrow(
+        const category = await this.categoryRepo.findOneByIdOrThrow(
           new CategorytId(query.id),
         );
-        return Result.ok(product);
+        return Result.ok(category);
       }
 }
