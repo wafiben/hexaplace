@@ -11,14 +11,14 @@ export interface CreateCategoryProps {
   createdDate?: DateVO;
   name: string;
   description: string;
-  /* parentId?: string; */
+  parentId?: string;
 }
 
 export interface CategoryProps {
   createdDate?: DateVO;
   name: string;
   description: string;
-  /* parentId?: string; */
+  parentId?: string;
 }
 
 export class CategoryEntity extends AggregateRoot<CategoryProps> {
@@ -31,7 +31,7 @@ export class CategoryEntity extends AggregateRoot<CategoryProps> {
     const props: CreateCategoryProps = {
       name: create.name,
       description: create.description,
-      /* parentId: create.parentId, */
+      parentId: create.parentId,
     };
     const categoryEntity = new CategoryEntity({
       id,

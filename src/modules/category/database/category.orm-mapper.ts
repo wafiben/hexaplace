@@ -14,15 +14,13 @@ export class CategoryOrmMapper extends OrmMapper<
   CategoryEntity,
   CategoryOrmEntity
 > {
-  protected toOrmProps(
-    entity: CategoryEntity,
-  ): OrmEntityProps<CategoryOrmEntity> {
-    
+  protected toOrmProps(entity: CategoryEntity): OrmEntityProps<any> {
     const props = entity.getPropsCopy();
 
     return {
       name: props.name,
       description: props.description,
+      parentid: props.parentId,
     };
   }
 

@@ -12,4 +12,7 @@ export class CategoryOrmEntity extends TypeormEntityBase {
 
   @Column()
   description: string;
+
+  @Column({ nullable: true })
+  parentid: string ;
 }

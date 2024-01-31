@@ -49,6 +49,8 @@ export abstract class OrmMapper<
       createdDate: entity.createdDate.value,
       updatedDate: entity.updatedDate.value,
     });
+    console.log("=====propsddddd-*-*/--*sormEntity",ormEntity)
+
     if (process.env.PROFILE === 'TEST') {
       const ormEntityBase: TypeormEntityBase =
         ormEntity as unknown as TypeormEntityBase;

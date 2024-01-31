@@ -2,13 +2,13 @@ import { CommandProps } from '@src/libs/ddd/domain/base-classes/command-props.ba
 import { Command } from '@src/libs/ddd/domain/base-classes/command.base';
 
 export class CreateCategoryCommand extends Command {
-  readonly id?: string;
+  readonly id: string;
 
   readonly name: string;
 
   readonly description: string;
 
-  readonly parentId?: string;
+  readonly parentId?: string
 
   constructor(props: CommandProps<CreateCategoryCommand>) {
     super(props);
@@ -18,3 +18,5 @@ export class CreateCategoryCommand extends Command {
     this.parentId = props.parentId;
   }
 }
+
+

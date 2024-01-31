@@ -10,6 +10,7 @@ import {
 } from '@nestjs/swagger';
 
 import { CreateCategoryCommand } from '@modules/category/commands/create-category/create-category.command';
+
 @ApiTags('Category')
 @ApiBearerAuth('jwt-token')
 @Controller(routesV1.version)

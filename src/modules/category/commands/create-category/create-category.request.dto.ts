@@ -13,8 +13,7 @@ export class CreateCategoryRequest implements CreateCategory {
     description: 'category id',
   })
   @IsString()
-  @IsOptional()
-  readonly id?: string;
+  readonly id: string;
 
   @ApiProperty({
     description: 'category name',
